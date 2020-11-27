@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+    <p id="p6"></p>
+    <p id="p7"></p>
+    <p id="p8"></p>
+    <p id="p9"></p>
+    <p id="p10"></p>
+    <script>
+      var student1 = {
+        firstName: 'Morteza',
+        lastName: 'Bayanloo',
+        age: 34,
+        isMale: true,
+        fullName: function () {
+          var firstName = 'aaa';
+          var lastName = 'bbb';
+          console.log(this);
+          console.log(student1);
+
+        //   return student1.firstName + ' ' + student1.lastName;
+          return this.firstName + ' ' + this.lastName + ', was born at ' + this.getDOB();
+        },
+        getDOB: function(){
+            return 2020 - this.age;
+        }
+      };
+
+      var student2 = {
+        firstName: 'Roya',
+        lastName: 'Ghasemifar',
+        age: 30,
+        isMale: false,
+        fullName: function () {
+          var firstName = 'aaa';
+          var lastName = 'bbb';
+          console.log(this);
+          console.log(student1);
+
+        //   return student1.firstName + ' ' + student1.lastName;
+          return this.firstName + ' ' + this.lastName + ', was born at ' + this.getDOB();
+        },
+        getDOB: function(){
+            return 2020 - this.age;
+        }
+      };
+
+    //   console.log(this);
+      
+      document.getElementById('p1').innerHTML = student1;
+      document.getElementById('p2').innerHTML = student1.firstName;
+      document.getElementById('p3').innerHTML = student1.lastName;
+      document.getElementById('p4').innerHTML = student1.age;
+      document.getElementById('p5').innerHTML = student1.isMale;
+      document.getElementById('p6').innerHTML =
+        student1.firstName + ' ' + student1.lastName;
+
+      document.getElementById('p7').innerHTML =
+        student2.firstName + ' ' + student2.lastName;
+      document.getElementById('p8').innerHTML = student1.fullName();
+      document.getElementById('p9').innerHTML = student2.fullName();
+    </script>
+  </body>
+</html>

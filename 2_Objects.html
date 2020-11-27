@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+    <p id="p6"></p>
+    <p id="p7"></p>
+    <p id="p8"></p>
+    <p id="p9"></p>
+    <p id="p10"></p>
+
+    <script>
+      var student1 = {
+        firstName: 'Morteza',
+        lastName: 'Bayanloo',
+        age: 34,
+        isMale: true,
+        fullName: function () {
+          return this.firstName + ' ' + this.lastName;
+        },
+      };
+      var student2 = {
+        firstName: 'Roya',
+        lastName: 'Ghasemifar',
+        age: 30,
+        isMale: false,
+        fullName: function () {
+          return this.firstName + ' ' + this.lastName;
+        },
+      };
+
+      document.getElementById('p1').innerHTML = student1.fullName();
+      document.getElementById('p2').innerHTML = student2.fullName();
+      document.getElementById('p3').innerHTML =
+        'First name :' + student1.firstName;
+
+      console.log(student1);
+      student1.agee = 35;
+      console.log(student1);
+
+      /* Object Costructor Fucntion*/
+      var Student = function (fname, lastName) {
+        // console.log(this);
+        this.firstName = fname;
+        // console.log(this);
+        this.lastName = lastName;
+        // console.log(this);
+        this.fullName = function () {
+          return this.firstName + ' ' + this.lastName;
+        };
+      };
+
+      Student('Alireza', 'Mohammadi');
+
+      var student3 = new Student('Alireza', 'Mohammadi');
+      document.getElementById('p4').innerHTML = student3.fullName();
+
+      let student4 = new Student('Sadegh', 'Abdoli');
+      var student5 = new Student('Mina', 'Mashayekhi');
+      var student6 = new Student('Mehdi', 'Mohammadi');
+      var student7 = new Student('Mahsa', 'Taheri Nia');
+      document.getElementById('p5').innerHTML = student4.fullName();
+      document.getElementById('p6').innerHTML = student5.fullName();
+      document.getElementById('p7').innerHTML = student6.fullName();
+      document.getElementById('p8').innerHTML = student7.fullName();
+
+      function showThis() {
+        console.log(this);
+      }
+      var obj = {
+        fname: 'ali',
+        age: 30,
+        show: function () {
+          console.log(this);
+
+          console.log('--------------');
+          showThis();
+        },
+      };
+
+      obj.show();
+    </script>
+  </body>
+</html>
