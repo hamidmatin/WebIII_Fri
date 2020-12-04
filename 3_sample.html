@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>JavaScript For Loop</h1>
+    <p class="description">
+      Loops can execute a block of code a number of times.
+    </p>
+    <h2>JavaScript Loops</h2>
+    <p class="parag">
+      Loops are handy, if you want to run the same code over and over again,
+      each time with a different value.
+    </p>
+
+    <p class="parag">Often this is the case when working with arrays:</p>
+
+    <script>
+      var desc = document.getElementsByClassName('description');
+      console.log(desc);
+      var parags = document.getElementsByClassName('parag');
+      console.log(parags);
+
+      desc[0].style.color = 'red';
+      parags[0].style.color ='white';
+      parags[0].style.background = 'green';
+      parags[1].style.color ='white';
+      parags[1].style.background = 'green';
+    </script>
+  </body>
+</html>
