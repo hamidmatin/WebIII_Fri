@@ -129,6 +129,38 @@
       var lastName;
       var score;
 
+      scoreElement.onkeypress = function(e){
+        // console.log(e)
+        // console.log(e.keyCode);
+        
+        // if(e.keyCode >= 48 && e.keyCode <= 57){
+        //   e.returnValue = true
+        // }
+        // else{
+        //   e.returnValue = false
+        // }
+
+        e.returnValue = e.keyCode >= 48 && e.keyCode <= 57;
+
+      }
+      
+      scoreElement.onkeyup = function(e){
+        console.log(e.target.value)
+        document.querySelector('#score + .invalid').innerHTML ='';
+        let value = parseInt(e.target.value);
+        if(value < 0 || value > 100){
+          document.querySelector('#score + .invalid').innerHTML =
+            'Score beween 0 and 100';
+        }
+
+      }
+
+
+      lastNameElement.onkeyup = function(e){
+        if(e.target.value != ''){
+          document.querySelector('#lname + .invalid').innerHTML = '';
+        }
+      }
       document.getElementById('add').onclick = function () {
         firstName = firstNameElement.value;
         lastName = lastNameElement.value;
