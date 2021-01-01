@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+
+    <script>
+        var a = 10;
+
+        let  x = 20;
+
+
+        // Redeclear variable
+        var a = 'hamid';
+        // let x = 'dfd';
+        // let a = 20;
+
+        document.getElementById('p1').innerHTML = a;
+
+        if(true){
+            var b = 10;
+            let z = 40;
+            if(true){
+                var c = 20;
+                let y = 40;
+                document.getElementById('p2').innerHTML = 'b = ' + b + ', c = ' + c + ', y = ' + y + ', z = ' + z;
+            }
+            document.getElementById('p3').innerHTML = 'b = ' + b + ', c = ' + c;
+            // document.getElementById('p4').innerHTML = 'y = ' + y;
+        }
+
+        /**********************/
+        let r = 12;
+        // let pi = 3.141592653589793;
+        const PI = 3.141592653589793;
+
+        let area = r ** 2 * PI;
+
+        PI = 12;
+        let mohit = 2 * r * PI;
+
+        document.getElementById('p4').innerHTML = 'Area = ' + area + ', Mohit = ' + mohit
+    </script>
+</body>
+</html>

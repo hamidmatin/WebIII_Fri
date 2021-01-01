@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+
+    <script>
+       
+
+        function fn1 (x){
+            x += 10;
+
+            return x;
+        }
+
+        function fn2(){
+            var x = 30;
+            document.getElementById('p1').innerHTML = fn1(x);
+            document.getElementById('p2').innerHTML = x;
+            
+            var list = [5,3,2];
+            
+            fn3(list);
+            document.getElementById('p3').innerHTML = list;
+            
+
+        }
+
+        function fn3(arr){
+            arr[1] = 50;
+        }
+
+        fn2()
+
+        var st1 = {
+            fname : 'Mohhamad'
+        }
+        var st2 = st1;
+        
+        document.getElementById('p4').innerHTML = st2.fname;
+        st1.fname = 'reza';
+        document.getElementById('p5').innerHTML = st2.fname;
+    </script>
+</body>
+</html>
