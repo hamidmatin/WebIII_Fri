@@ -5,286 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      * {
-        box-sizing: border-box;
+      body {
+        margin: 0;
       }
-      .row {
+      .nav {
+        background-color: #555555;
+      }
+      .nav ul {
+        margin: 0;
+        list-style: none;
+        padding: 0;
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
       }
-      .form-wrapper {
-        width: 600px;
-        border: 1px solid #eeeeee;
-        box-shadow: 0 2px 4px #cccccc;
-        margin: 50px auto;
-        padding: 10px;
-      }
-      .label-wrapper {
-        width: 20%;
-        padding: 10px 0;
-      }
-      .control-wrapper {
-        width: 80%;
-        padding: 10px 0;
-      }
-      input {
+      .nav a {
         display: block;
-        width: 100%;
-        padding: 8px;
-        border: 2px solid #555555;
-        border-radius: 5px;
-        outline: none;
-      }
-      input:focus {
-        box-shadow: 0 0 2px 1px #cccccc;
-      }
-      label {
-        display: block;
-        width: 100%;
-        padding: 8px;
-      }
-      .table {
-        width: 600px;
-        margin: auto;
-      }
-      .first-name {
-        width: 40%;
-      }
-      .last-name {
-        width: 50%;
-      }
-      .mark {
-        width: 10%;
-      }
-      .first-name,
-      .last-name,
-      .score {
-        padding: 15px;
-        margin-left: 5px;
-      }
-      .title {
-        text-align: center;
-        background-color: rgb(121, 121, 121);
         color: white;
+        text-decoration: none;
+        padding: 12px 20px;
       }
-      .invalid {
-        color: red;
+      .nav a:hover {
+        background-color: black;
       }
-      .show {
-        display: block !important;
+
+      #mega-menu {
+        height: 300px;
+        background-color: rgb(107, 229, 245);
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 100%;
+      }
+      .nav ul {
+        position: relative;
+      }
+
+      .close{
+          font-size: 2em;
+          font-weight: 900;
+          display: block;
+          width: 40px;
+          line-height: 40px;
+          border: none;
+          outline: none;
+          position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+          background-color: rgb(107, 229, 245);;
+      }
+      .close:hover{
+          background-color: hsl(187, 87%, 79%);
       }
     </style>
   </head>
   <body>
-    <div class="form-wrapper">
-      <div class="row">
-        <div class="label-wrapper">
-          <label for="fname">First Name</label>
-        </div>
-        <div class="control-wrapper">
-          <input type="text" id="fname" />
-          <span class="invalid"></span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="label-wrapper">
-          <label for="lname">Last Name</label>
-        </div>
-        <div class="control-wrapper">
-          <input type="text" id="lname" />
-          <span class="invalid"></span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="label-wrapper">
-          <label for="score">Score</label>
-        </div>
-        <div class="control-wrapper">
-          <input type="text" id="score" />
-          <span class="invalid"></span>
-        </div>
-      </div>
-      <div class="row">
-        <button id="add">Add</button>
-      </div>
-    </div>
-    <div class="table">
-      <div class="row">
-        <div class="first-name title">First Name</div>
-        <div class="last-name title">Last Name</div>
-        <div class="score title">Score</div>
-      </div>
-      <div id="table-body"></div>
+    <div class="nav">
+      <ul>
+        <li><a href="#">Item 1</a></li>
+        <li><a href="#">Item 2</a></li>
+        <li><a href="#">Item 3</a></li>
+        <li><a href="#">Item 4</a></li>
+        <li>
+          <a href="#" id="more">More</a>
+          <div id="mega-menu">
+            sds
+            <button class="close">&times;</button>
+          </div>
+        </li>
+        <li><a href="#">Item 6</a></li>
+      </ul>
     </div>
 
+    <script src="jQuery/jquery-3.5.1.min.js"></script>
     <script>
-      var firstNameElement = document.getElementById('fname');
-      var lastNameElement = document.getElementById('lname');
-      var scoreElement = document.getElementById('score');
+        $(function(){
+            var megaMenu = $('#mega-menu');
+            megaMenu.hide();
+            
+            $('#more').click(function(){
+                // megaMenu.toggle();
+                megaMenu.slideToggle();
+            })
 
-      var firstName;
-      var lastName;
-      var score;
-
-      var studentList = [];
-
-      var Stdent = function (firstName, lastName, score) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.score = score;
-
-        this.fullName = function () {
-          return `${this.firstName} ${this.lastName}`;
-        };
-      };
-
-      scoreElement.onkeypress = function (e) {
-        // console.log(e)
-        // console.log(e.keyCode);
-
-        // if(e.keyCode >= 48 && e.keyCode <= 57){
-        //   e.returnValue = true
-        // }
-        // else{
-        //   e.returnValue = false
-        // }
-
-        e.returnValue = e.keyCode >= 48 && e.keyCode <= 57;
-      };
-
-      scoreElement.onkeyup = function (e) {
-        console.log(e.target.value);
-        document.querySelector('#score + .invalid').innerHTML = '';
-        let value = parseInt(e.target.value);
-        if (value < 0 || value > 100) {
-          document.querySelector('#score + .invalid').innerHTML =
-            'Score beween 0 and 100';
-        }
-      };
-
-      lastNameElement.onkeyup = function (e) {
-        if (e.target.value != '') {
-          document.querySelector('#lname + .invalid').innerHTML = '';
-        }
-      };
-      document.getElementById('add').onclick = function () {
-        firstName = firstNameElement.value;
-        lastName = lastNameElement.value;
-        score = parseFloat(scoreElement.value);
-        if (!isValidForm()) return;
-
-        // studentList.push({
-        //   firstName: firstName,
-        //   lastName: lastName,
-        //   score: score,
-        // });
-
-        var student = new Stdent(firstName, lastName, score);
-
-        studentList.push(student);
-
-        var row = `
-            <div class="row">
-                <div class="first-name">${firstName}</div>
-                <div class="last-name">${lastName}</div>
-                <div class="score">${score}</div>
-            </div>
-        `;
-        var tableBody = document.getElementById('table-body');
-
-        tableBody.innerHTML += row;
-
-        firstNameElement.value = '';
-        lastNameElement.value = '';
-        scoreElement.value = '';
-
-        firstNameElement.focus();
-      };
-
-      let isValidForm = function () {
-        let result = true;
-        var invalidElements = document.querySelectorAll(
-          '.form-wrapper .invalid'
-        );
-        console.log(invalidElements);
-
-        // for (var ele of invalidElements) {
-        //   ele.innerHTML = '';
-        // }
-
-        for (var i = 0; i < invalidElements.length; i++) {
-          invalidElements[i].innerHTML = '';
-        }
-
-        if (firstName === '') {
-          //   document.querySelector('#fname + .invalid').innerHTML = 'Required.';
-          firstNameElement.nextElementSibling.innerHTML = 'Required.';
-          result = false;
-        }
-        if (lastName === '') {
-          document.querySelector('#lname + .invalid').innerHTML = 'Required.';
-          result = false;
-        }
-        if (isNaN(score)) {
-          document.querySelector('#score + .invalid').innerHTML =
-            'Invalid Number.';
-          result = false;
-        } else if (score < 0 || score > 100) {
-          document.querySelector('#score + .invalid').innerHTML =
-            'Score beween 0 and 100';
-          result = false;
-        }
-        return result;
-      };
-
-      /***************/
-      document
-        .querySelector('.first-name.title')
-        .addEventListener('click', function () {
-          // Sort List
-          studentList.sort(function (s1, s2) {
-            if (s1.firstName > s2.firstName) return 1;
-            else if (s1.firstName < s2.firstName) return -1;
-            else return 0;
-          });
-
-          fillTable();
-          
-        });
-      /***************/
-      document
-        .querySelector('.last-name.title')
-        .addEventListener('click', function () {
-          // Sort List
-          studentList.sort(function (s1, s2) {
-            if (s1.lastName > s2.lastName) return 1;
-            else if (s1.lastName < s2.lastName) return -1;
-            else return 0;
-          });
-
-          fillTable(); 
-
-        });
-
-      /************ Fill Table **********/
-      var fillTable = function () {
-        var tableBody = document.getElementById('table-body');
-
-        tableBody.innerHTML = '';
-
-        studentList.forEach(function (student) {
-          var row = `
-                      <div class="row">
-                          <div class="first-name">${student.firstName}</div>
-                          <div class="last-name">${student.lastName}</div>
-                          <div class="score">${student.score}</div>
-                      </div>
-                  `;
-
-          tableBody.innerHTML += row;
-        });
-      };
+            $('.close').click(function(){
+                megaMenu.fadeOut()
+            })
+        })
     </script>
   </body>
 </html>
