@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #div1 {
+        width: 150px;
+        height: 150px;
+        background-color: red;
+        position: relative;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn1">Animate</button>
+    <hr />
+    <div id="div1"></div>
+    <script>
+      let duration = 1000;
+      let oldValue = 500;
+      let newValue = 1000;
+      let step = (newValue - oldValue) / duration;
+
+      let left = oldValue + step;
+      const animate = setInterval(function () {
+        document.getElementById('div1').style.left = left + 'px';
+        if (left === newValue) clearInterval(animate);
+        left += step;
+      }, 1);
+    </script>
+  </body>
+</html>
