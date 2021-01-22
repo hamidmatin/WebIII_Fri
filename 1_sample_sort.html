@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+
+      .table {
+        width: 800px;
+        margin: auto;
+      }
+      .id {
+        width: 10%;
+      }
+      .name {
+        width: 40%;
+      }
+      .user-name {
+        width: 30%;
+      }
+      .email {
+        width: 30%;
+      }
+      .id,
+      .name,
+      .user-name,
+      .email {
+        padding: 15px;
+        margin-left: 5px;
+      }
+      .title {
+        text-align: center;
+        background-color: rgb(121, 121, 121);
+        color: white;
+        cursor: pointer;
+      }
+      .invalid {
+        color: red;
+      }
+      .show {
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table">
+      <div class="row">
+        <div class="id title">ID</div>
+        <div class="name title">Name</div>
+        <div class="user-name title">User Name</div>
+        <div class="email title">Email</div>
+      </div>
+      <div id="table-body"></div>
+    </div>
+
+    <script src="lib/jQuery/jquery-3.5.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        const users = [
+          {
+            id: 1,
+            name: 'Leanne Graham',
+            username: 'Bret',
+            email: 'Sincere@april.biz',
+          },
+          {
+            id: 2,
+            name: 'Ervin Howell',
+            username: 'Antonette',
+            email: 'Shanna@melissa.tv',
+          },
+          {
+            id: 3,
+            name: 'Clementine Bauch',
+            username: 'Samantha',
+            email: 'Nathan@yesenia.net',
+          },
+          {
+            id: 4,
+            name: 'Patricia Lebsack',
+            username: 'Karianne',
+            email: 'Julianne.OConner@kory.org',
+          },
+          {
+            id: 5,
+            name: 'Chelsey Dietrich',
+            username: 'Kamren',
+            email: 'Lucio_Hettinger@annie.ca',
+          },
+          {
+            id: 6,
+            name: 'Mrs. Dennis Schulist',
+            username: 'Leopoldo_Corkery',
+            email: 'Karley_Dach@jasper.info',
+          },
+          {
+            id: 7,
+            name: 'Kurtis Weissnat',
+            username: 'Elwyn.Skiles',
+            email: 'Telly.Hoeger@billy.biz',
+          },
+          {
+            id: 8,
+            name: 'Nicholas Runolfsdottir V',
+            username: 'Maxime_Nienow',
+            email: 'Sherwood@rosamond.me',
+          },
+          {
+            id: 9,
+            name: 'Glenna Reichert',
+            username: 'Delphine',
+            email: 'Chaim_McDermott@dana.io',
+          },
+          {
+            id: 10,
+            name: 'Clementina DuBuque',
+            username: 'Moriah.Stanton',
+            email: 'Rey.Padberg@karina.biz',
+          },
+        ];
+
+        const tableBody = $('#table-body');
+
+        const loadUsers = function () {
+          // Clear table
+          tableBody.empty();
+
+          users.forEach(function (user) {
+            const row = `<div class="row">
+                                  <div class="id">${user.id}</div>
+                                  <div class="name">${user.name}</div>
+                                  <div class="user-name">${user.username}</div>
+                                  <div class="email">${user.email}</div>
+                              </div>`;
+            tableBody.append(row);
+          });
+        };
+        loadUsers();
+
+        /***************/
+        let sortDirection = -1;
+        let sortColumn = 'id';
+
+        /***************************************/
+        $('.table .id.title').click(function () {
+          //   console.table(users);
+          if (sortColumn != 'id') sortDirection = 1;
+
+          users.sort(function (u1, u2) {
+            return (u1.id - u2.id) * sortDirection;
+          });
+
+          sortDirection *= -1;
+          sortColumn = 'id';
+
+          //   console.table(users);
+          loadUsers();
+        });
+
+        /***************************************/
+        $('.table .name.title').click(function () {
+          //   console.table(users);
+
+          if (sortColumn != 'name') sortDirection = 1;
+
+          users.sort(function (u1, u2) {
+            if (u1.name > u2.name) return 1 * sortDirection;
+            else if (u1.name < u2.name) return -1 * sortDirection;
+            else return 0;
+          });
+
+          sortDirection *= -1;
+          sortColumn = 'name';
+
+          //   console.table(users);
+          loadUsers();
+        });
+
+        /***************************************/
+        $('.table .user-name.title').click(function () {
+          //   console.log('user-name');
+          // console.table(users);
+
+          if (sortColumn != 'user-name') sortDirection = 1;
+
+          users.sort(function (u1, u2) {
+            if (u1.username > u2.username) return 1 * sortDirection;
+            else if (u1.username < u2.username) return -1 * sortDirection;
+            else return 0;
+          });
+
+          sortColumn = 'user-name';
+
+          //   console.table(users);
+          loadUsers();
+        });
+
+        /***************************************/
+        $('.table .email.title').click(function () {
+          //   console.log('email');
+          //   console.table(users);
+          if (sortColumn != 'email') sortDirection = 1;
+
+          users.sort(function (u1, u2) {
+            if (u1.email > u2.email) return 1 * sortDirection;
+            else if (u1.email < u2.email) return -1 * sortDirection;
+            else return 0;
+          });
+
+          sortColumn = 'email';
+
+          //   console.table(users);
+          loadUsers();
+        });
+      });
+    </script>
+  </body>
+</html>
