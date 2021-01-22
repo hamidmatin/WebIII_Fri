@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">Load Name</button>
+    <button id="page1">Load Page 1</button>
+    <button id="page2">Load Page 2</button>
+    <h1></h1>
+    <div id="main">
+        
+    </div>
+    <script>
+      document.getElementById('btn').onclick = function () {
+        let xhttp = new XMLHttpRequest();
+
+        console.log(xhttp.readyState);
+
+        xhttp.onreadystatechange = function () {
+          console.log(
+            `readyState = ${this.readyState}, status = ${this.status}`
+          );
+          console.log(`Response = ${this.responseText}`);
+          if (this.readyState === 4 && this.status === 200) {
+            document.querySelector('h1').innerHTML = this.responseText;
+          }
+        };
+
+        /*
+            open(method, url, async)
+                method :
+                    'GET'    جهت دریافت اطلاعات
+                    'POST'   جهت ایجاد اطلاعت جدید
+                    'DELETE' برای حذف اطلاعات
+                    'PUT'    برای به روز رسانی
+                    'PATCH'
+        */
+
+        xhttp.open('GET', '/data/my-data.txt', true);
+
+        xhttp.send();
+      };
+
+      document.getElementById('page1').onclick = function(){
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('GET','/partial_page/page1.html', true);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            if(this.readyState === 4 && this.status === 200){
+                document.getElementById('main').innerHTML = this.responseText;
+            }
+        }
+      }
+
+      document.getElementById('page2').onclick = function(){
+        let xhttp = new XMLHttpRequest();
+        xhttp.open('GET','/partial_page/page2.html', true);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            if(this.readyState === 4 && this.status === 200){
+                document.getElementById('main').innerHTML = this.responseText;
+            }
+        }
+      }
+    </script>
+  </body>
+</html>
