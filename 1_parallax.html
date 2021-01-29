@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      #parallax1,
+      #parallax2 {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      #parallax2 {
+        background: url('/images/inside-weather-E5lK_COkD2E-unsplash-copy.jpg') no-repeat;
+        background-size: 100% 100%;
+      }
+      #parallax1 img {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+        
+      }
+      .content {
+        background-color: #f1f1f1;
+        padding: 60px;
+        line-height: 2;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="parallax1">
+      <img src="images/fernando-puente-eu2EP0CGWz4-unsplash.jpg" alt="" />
+    </div>
+    <div class="content">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+    </div>
+    <div id="parallax2"></div>
+    <div class="content">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat facilis, impedit qui nihil,
+        voluptatibus consectetur hic error consequatur voluptatum, quod officiis deleniti!
+        Reprehenderit minima sapiente, tempore voluptates est maiores enim.
+      </p>
+    </div>
+
+    <script src="lib/jQuery/jquery-3.5.1.min.js"></script>
+    <script>
+      $(function () {
+        $(window).scroll(function () {
+          // console.log($(this).scrollTop());
+
+          let scrollTop = $(this).scrollTop();
+
+          $('#parallax1 img').css('top', scrollTop * .7);
+
+          const parallax2= $('#parallax2');
+
+          if(scrollTop > parallax2.offset().top){
+            parallax2.css('background-position-y', (scrollTop - parallax2.offset().top) * .7)
+          }
+
+        });
+      });
+    </script>
+  </body>
+</html>
