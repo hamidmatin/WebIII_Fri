@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      .student-id {
+        width: 15%;
+      }
+      .first-name {
+        width: 30%;
+      }
+      .last-name {
+        width: 30%;
+      }
+      .score {
+        width: 10%;
+      }
+      .student-row{
+        display: flex;
+        border-top: 1px solid #ccc;
+        padding: 8px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container p-5">
+      <button class="btn btn-success" onclick="loadData()">Load Data</button>
+
+      <div class="card p-3">
+        <div class="card-title d-flex px-3">
+          <div class="fw-bold student-id">Student id</div>
+          <div class="fw-bold first-name">First Name</div>
+          <div class="fw-bold last-name">Last Name</div>
+          <div class="fw-bold score">Score</div>
+        </div>
+        <div class="card-body">
+          
+        </div>
+      </div>
+    </div>
+    <script>
+      let studentList = [];
+      const Student = function (studentID, firstName, lastName, score) {
+        this.studentID = studentID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.score = score;
+      };
+
+      /*
+       * 
+       * 
+       * 
+      */
+      const convertToStudentList = function(xmlData){
+        const students = xmlData.getElementsByTagName('student');
+            console.log(students);
+
+            // studentList = [];
+
+            for (let i = 0; i < students.length; i++) {
+              let studentID = students[i].getAttribute('student-id')
+              let firstName = students[i].querySelector('firstname').innerHTML;
+              let lastName = students[i].querySelector('lastname').innerHTML;
+              let score = students[i].querySelector('score').innerHTML;
+
+              const student = new Student(studentID,firstName, lastName, parseFloat(score));
+
+              studentList.push(student);
+            }
+
+            console.log(studentList);
+      }
+      /******
+       * 
+       */
+      const fillTable = function(){
+        document.querySelector('.card-body').innerHTML = '';
+        studentList.forEach(function(student){
+          let row = `<div class="student-row">
+            <div class="student-id">${student.studentID}</div>
+            <div class="first-name">${student.firstName}</div>
+            <div class="last-name">${student.lastName}</div>
+            <div class="score">${student.score}</div>
+          </div>`;
+          document.querySelector('.card-body').innerHTML += row;
+        })
+      }
+      /***
+       * 
+       * 
+       * 
+      */
+      const loadData = function () {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', '/data/student_list.xml');
+        xhttp.send();
+
+        xhttp.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+            console.log(this.responseXML);
+
+            convertToStudentList(this.responseXML);
+
+            fillTable();
+          }
+        };
+      };
+    </script>
+  </body>
+</html>
