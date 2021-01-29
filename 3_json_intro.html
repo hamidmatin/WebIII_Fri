@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const studentObj = { firstName: 'Maede', lastName: 'Makki', score: 85, studentID: '3', isMale: false };
+      console.log(studentObj)
+      const studentJSON = '{"firstName": "Maede","lastName": "Makki","score": 85,"studentID": "3", "isMale": false, "address":{"city": "Tehran"}}';
+      console.log(studentJSON)
+
+      /*
+      JSON.parse() => convert json to object
+      JSON.stringify() => convert object to json
+    */
+      
+    const newStudentObj = JSON.parse(studentJSON);
+    console.log(newStudentObj);
+    
+    const newStudentJSON = JSON.stringify(studentObj);
+    console.log(newStudentJSON);
+    </script>
+  </body>
+</html>

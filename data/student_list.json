@@ -1,0 +1,20 @@
+[
+  {
+    "firstName": "Sadegh",
+    "lastName": "Abdoli",
+    "score": 85,
+    "studentID": "1"
+  },
+  {
+    "firstName": "Alireza",
+    "lastName": "Mohammadi",
+    "score": 80,
+    "studentID": "2"
+  },
+  {
+    "firstName": "Maede",
+    "lastName": "Makki",
+    "score": 85,
+    "studentID": "3"
+  }
+]
