@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container mt-3">
+      <h2>Activate Modal with JavaScript</h2>
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-primary" id="myBtn">
+        Open Modal
+      </button>
+      <button type="button" class="btn btn-primary" id="myBtn2">
+        Open Modal
+      </button>
+
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+        
+      </div>
+    </div>
+
+    <script>
+      const createModal =function(title, body) {
+        return `<div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">${title}</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                ×
+              </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">${body}</div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>`
+      } ;
+
+
+      $(document).ready(function () {
+        $('#myBtn').click(function () {
+           title = 'Title';
+           body = 'Body............'
+          document.querySelector('#myModal').innerHTML = createModal(title, body);
+
+          $('#myModal').modal({backdrop: "static"});
+        });
+        $('#myBtn2').click(function () {
+           title = 'sgslg slkg hlks g';
+           body = '<p>Parag 1</p><p>Parag 2</p>'
+          document.querySelector('#myModal').innerHTML = createModal(title, body);
+
+          $('#myModal').modal({backdrop: false});
+        });
+      });
+    </script>
+  </body>
+</html>
