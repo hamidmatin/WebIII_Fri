@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form id="frm" name="myForm">
+    <input type="text" name="text">
+    <input type="checkbox" name="chk1">
+    <input type="checkbox" name="chk2">
+    <input type="checkbox" name="chk3">
+
+    <button type="submit">Submit</button>
+    <script>
+      document.getElementById('frm').onsubmit = function(e){
+        e.preventDefault();
+        console.log(document.forms['myForm'].text.value)
+        console.log(document.forms['myForm'].chk1.checked)
+      }
+    </script>
+  </form>
+</body>
+</html>
